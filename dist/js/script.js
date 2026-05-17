@@ -1,88 +1,108 @@
-// Data statis fallback (jika API mati)
-const fallbackProducts = [
-    {icon:"💻", name:"Web Development", price:8000000, description:"Website profesional, company profile, marketplace, e-commerce, dan CMS modern."},
-    {icon:"📱", name:"Mobile App Development", price:15000000, description:"Aplikasi iOS & Android native dan cross-platform dengan UI/UX modern."},
-    {icon:"🔒", name:"Cyber Security", price:10000000, description:"Perlindungan aset digital perusahaan dari ancaman siber."}
+// ============ DATA STATIS (TANPA BACKEND) ============
+const PRODUCTS = {
+    "1": {"id": "1", "name": "💻 Web Development", "price": "Rp 8.000.000 - 75.000.000", "description": "Website profesional, company profile, marketplace, e-commerce, dan CMS modern."},
+    "2": {"id": "2", "name": "📱 Mobile App Development", "price": "Rp 15.000.000 - 150.000.000", "description": "Aplikasi iOS & Android native dan cross-platform dengan UI/UX modern."},
+    "3": {"id": "3", "name": "🔒 Cyber Security", "price": "Rp 10.000.000 - 85.000.000", "description": "Perlindungan aset digital perusahaan dari ancaman siber."}
+};
+
+const PORTFOLIOS = [
+    {"title": "E-Commerce Marketplace", "category": "Website", "client": "PT. Maju Jaya", "desc": "Full Stack Web App dengan payment gateway"},
+    {"title": "Company Profile Digital", "category": "Website", "client": "CV. Kreatif", "desc": "Sistem manajemen proyek rating A+ security"},
+    {"title": "Laundry Mobile App", "category": "Mobile App", "client": "Laundry Cepat", "desc": "Aplikasi pesan antar laundry dengan tracking"}
 ];
 
-function toggleMenu() {
-    document.getElementById('navLinks')?.classList.toggle('open');
-}
-function closeMenu() { document.getElementById('navLinks')?.classList.remove('open'); }
+const TESTIMONIALS = [
+    {"name": "Donwahab Pool", "message": "Kami kasih rating 6/6 untuk layanan RDS. Website yang dibuat simpel, rapi, dan mudah diakses lewat HP.", "rating": 5},
+    {"name": "Enjang Rahman", "message": "Sangat bagus 👍", "rating": 5},
+    {"name": "Mio Soul", "message": "Mantap trimakasi ❤️", "rating": 5}
+];
 
-async function loadServices() {
-    try {
-        const res = await fetch('/api/products');
-        if(!res.ok) throw new Error('API down');
-        const products = await res.json();
-        const container = document.getElementById('servicesGrid');
-        if(container) container.innerHTML = Object.values(products).map(p => `
-            <div class="service-card"><div class="service-icon">${p.icon || '🚀'}</div>
-            <h3>${p.name}</h3><p style="font-size:12px;color:#94a3b8">${p.description}</p>
-            <div class="service-price">Rp ${p.price.toLocaleString()}</div>
-            <a href="#contact" class="btn-card">Konsultasi</a></div>`).join('');
-    } catch(e) {
-        const container = document.getElementById('servicesGrid');
-        if(container) container.innerHTML = fallbackProducts.map(p => `
-            <div class="service-card"><div class="service-icon">${p.icon}</div>
-            <h3>${p.name}</h3><p style="font-size:12px;color:#94a3b8">${p.description}</p>
-            <div class="service-price">Rp ${p.price.toLocaleString()}</div>
-            <a href="#contact" class="btn-card">Konsultasi</a></div>`).join('');
+// Simpan booking di localStorage (tetap ada meskipun refresh)
+let bookings = JSON.parse(localStorage.getItem('rds_bookings') || '[]');
+
+// Load Services
+function loadServices() {
+    const container = document.getElementById('servicesGrid');
+    if (container) {
+        container.innerHTML = Object.values(PRODUCTS).map(p => `
+            <div class="service-card">
+                <div class="service-icon">${p.name.split(' ')[0]}</div>
+                <h3>${p.name}</h3>
+                <p>${p.description}</p>
+                <div class="service-price">${p.price}</div>
+                <a href="#contact" class="btn-card">Konsultasi</a>
+            </div>
+        `).join('');
     }
 }
 
-async function loadPortfolio() {
-    try {
-        const res = await fetch('/api/portfolio');
-        const portfolios = await res.json();
-        const container = document.getElementById('portfolioGrid');
-        if(portfolios.length === 0) throw new Error('empty');
-        container.innerHTML = portfolios.map(p => `<div class="portfolio-card"><div class="service-icon">🚀</div><h3>${p.title}</h3><p style="font-size:12px">${p.category} | ${p.client}</p><a href="#" class="btn-card">Live Demo →</a></div>`).join('');
-    } catch(e) {
-        document.getElementById('portfolioGrid').innerHTML = '<div style="text-align:center;">Portofolio akan segera hadir</div>';
+// Load Portfolio
+function loadPortfolio() {
+    const container = document.getElementById('portfolioGrid');
+    if (container) {
+        container.innerHTML = PORTFOLIOS.map(p => `
+            <div class="portfolio-card">
+                <div class="service-icon">🚀</div>
+                <h3>${p.title}</h3>
+                <p>${p.category} | ${p.client}</p>
+                <p style="font-size:12px;color:#94a3b8">${p.desc}</p>
+                <a href="#" class="btn-card">Live Demo →</a>
+            </div>
+        `).join('');
     }
 }
 
-async function loadTestimonials() {
-    try {
-        const res = await fetch('/api/testimonials');
-        const testimonials = await res.json();
-        const container = document.getElementById('testimoniGrid');
-        if(testimonials.length === 0) throw new Error('empty');
-        container.innerHTML = testimonials.map(t => `<div class="testimoni-card"><div class="stars">★★★★★</div><p>"${t.message}"</p><h4>${t.name}</h4><div class="testimoni-reply">💬 RDS: Terima kasih!</div></div>`).join('');
-    } catch(e) {
-        document.getElementById('testimoniGrid').innerHTML = `
-            <div class="testimoni-card"><div class="stars">★★★★★</div><p>"Layanan RDS sangat memuaskan!"</p><h4>Klien Puas</h4><div class="testimoni-reply">💬 RDS: Terima kasih!</div></div>
-            <div class="testimoni-card"><div class="stars">★★★★★</div><p>"Profesional dan tepat waktu."</p><h4>Budi Santoso</h4></div>
-            <div class="testimoni-card"><div class="stars">★★★★★</div><p>"Support 24/7 sangat membantu."</p><h4>PT Maju Jaya</h4></div>`;
+// Load Testimonials
+function loadTestimonials() {
+    const container = document.getElementById('testimoniGrid');
+    if (container) {
+        container.innerHTML = TESTIMONIALS.map(t => `
+            <div class="testimoni-card">
+                <div class="stars">${'★'.repeat(t.rating)}</div>
+                <p>"${t.message}"</p>
+                <h4>${t.name}</h4>
+                <div class="testimoni-reply">💬 RDS: Terima kasih!</div>
+            </div>
+        `).join('');
     }
 }
 
-// Setup FAQ click handlers
-document.querySelectorAll('.faq-item').forEach(item => {
-    item.addEventListener('click', () => item.classList.toggle('active'));
-});
-
-// Form submission dengan Netlify Forms
+// Submit Booking (simpan ke localStorage)
 const consultForm = document.getElementById('consultationForm');
-if(consultForm) {
+if (consultForm) {
     consultForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(consultForm);
-        const data = Object.fromEntries(formData);
-        const resultDiv = document.getElementById('consultResult');
+        const booking = {
+            id: bookings.length + 1,
+            name: formData.get('fullName'),
+            email: formData.get('email'),
+            service: formData.get('service'),
+            message: formData.get('message'),
+            date: new Date().toISOString(),
+            status: 'pending'
+        };
         
-        try {
-            const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(data).toString() });
-            if(res.ok) {
-                resultDiv.innerHTML = '<span style="color:#10b981">✅ Pesan terkirim! Kami akan segera menghubungi.</span>';
-                consultForm.reset();
-            } else throw new Error();
-        } catch(err) {
-            resultDiv.innerHTML = '<span style="color:#ef4444">❌ Gagal mengirim. Silakan coba lagi.</span>';
-        }
+        bookings.push(booking);
+        localStorage.setItem('rds_bookings', JSON.stringify(bookings));
+        
+        const resultDiv = document.getElementById('consultResult');
+        resultDiv.innerHTML = '<span style="color:#10b981">✅ Booking terkirim! Admin akan segera menghubungi.</span>';
+        consultForm.reset();
         setTimeout(() => resultDiv.innerHTML = '', 5000);
     });
 }
 
-loadServices(); loadPortfolio(); loadTestimonials();
+// Toggle menu
+function toggleMenu() { document.getElementById('navLinks')?.classList.toggle('open'); }
+function closeMenu() { document.getElementById('navLinks')?.classList.remove('open'); }
+
+// Load all
+loadServices();
+loadPortfolio();
+loadTestimonials();
+
+// ============ SUPABASE CONFIG ============
+const SUPABASE_URL = 'https://rxavqieahctcoumxdsuy.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_Om2bBc8abrILDagNByy2ZQ_qhyrVntD';
+

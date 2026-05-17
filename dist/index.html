@@ -4,104 +4,180 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>RDS - Rajib Digital Solution</title>
-    <meta name="description" content="Rajib Digital Solution - Software House & Cyber Security Specialist. Layanan Web Development, Mobile App, Cyber Security. Konsultasi gratis!">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #fff; scroll-behavior: smooth; }
+        .navbar { background: rgba(10,10,10,0.95); backdrop-filter: blur(10px); padding: 12px 15px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; border-bottom: 1px solid #1a1a1a; }
+        .logo { font-size: 18px; font-weight: bold; background: linear-gradient(135deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .menu-toggle { display: none; font-size: 24px; cursor: pointer; color: white; background: none; border: none; }
+        .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; font-size: 14px; padding: 8px 12px; transition: color 0.3s; cursor: pointer; }
+        .nav-links a:hover { color: #3b82f6; }
+        .btn-wa { background: #25D366; color: white; padding: 6px 15px; border-radius: 25px; text-decoration: none; font-size: 13px; font-weight: bold; }
+        .hero { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); padding: 50px 15px; text-align: center; }
+        .hero h1 { font-size: 28px; margin-bottom: 15px; }
+        .hero p { font-size: 14px; margin-bottom: 20px; color: #94a3b8; }
+        .btn-primary, .btn-outline { padding: 10px 20px; font-size: 14px; display: inline-block; margin: 5px; border-radius: 30px; text-decoration: none; font-weight: bold; cursor: pointer; }
+        .btn-primary { background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; border: none; }
+        .btn-outline { background: transparent; border: 1px solid #3b82f6; color: #3b82f6; }
+        .stats { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
+        .stat-number { font-size: 24px; font-weight: bold; color: #3b82f6; }
+        .stat-label { font-size: 10px; color: #94a3b8; }
+        .container { max-width: 100%; padding: 40px 15px; }
+        .section-title { font-size: 24px; text-align: center; margin-bottom: 10px; }
+        .section-subtitle { font-size: 12px; text-align: center; color: #94a3b8; margin-bottom: 30px; }
+        .services-grid, .pricing-grid, .portfolio-grid, .testimoni-grid, .faq-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .service-card, .pricing-card, .portfolio-card, .testimoni-card, .faq-item { background: #111827; border-radius: 16px; padding: 20px; border: 1px solid #1f2937; }
+        .pricing-card.popular { border: 2px solid #3b82f6; position: relative; }
+        .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #3b82f6; padding: 4px 12px; border-radius: 20px; font-size: 10px; }
+        .pricing-price { font-size: 28px; font-weight: bold; color: #3b82f6; margin: 15px 0; }
+        .pricing-features { list-style: none; margin: 15px 0; }
+        .pricing-features li { padding: 5px 0; font-size: 12px; color: #94a3b8; }
+        .service-icon { font-size: 40px; margin-bottom: 15px; }
+        .service-price { font-size: 18px; font-weight: bold; color: #3b82f6; margin: 10px 0; }
+        .btn-card { background: #1f2937; color: white; padding: 8px 16px; border-radius: 30px; text-decoration: none; display: inline-block; margin-top: 10px; font-size: 12px; cursor: pointer; }
+        .testimoni-reply { background: #1f2937; border-radius: 12px; padding: 10px; margin-top: 12px; font-size: 11px; border-left: 3px solid #3b82f6; }
+        .stars { color: #f59e0b; margin-bottom: 10px; font-size: 14px; }
+        .faq-question { font-weight: bold; display: flex; justify-content: space-between; cursor: pointer; font-size: 14px; }
+        .faq-answer { display: none; margin-top: 12px; color: #94a3b8; font-size: 12px; padding-top: 10px; border-top: 1px solid #1f2937; }
+        .faq-item.active .faq-answer { display: block; }
+        .form-grid { display: grid; grid-template-columns: 1fr; gap: 20px; background: #111827; border-radius: 20px; padding: 25px; }
+        .contact-info { background: #1f2937; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 12px; font-size: 14px; }
+        .form-group { margin-bottom: 15px; }
+        input, select, textarea { width: 100%; padding: 12px; background: #1f2937; border: 1px solid #374151; border-radius: 10px; color: white; font-size: 14px; }
+        .footer { background: #0a0a0a; border-top: 1px solid #1a1a1a; padding: 30px 15px; text-align: center; }
+        .footer p { font-size: 11px; margin: 10px 0; color: #64748b; }
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links { position: fixed; top: 50px; left: -100%; width: 70%; height: 100vh; background: #0f172a; flex-direction: column; padding: 20px; transition: left 0.3s ease; gap: 15px; align-items: flex-start; border-right: 1px solid #1f2937; z-index: 999; }
+            .nav-links.open { left: 0; }
+            .nav-links a { padding: 12px 15px; width: 100%; }
+        }
+        @media (min-width: 768px) {
+            .services-grid, .pricing-grid, .portfolio-grid, .testimoni-grid { grid-template-columns: repeat(3, 1fr); }
+            .faq-grid { grid-template-columns: repeat(2, 1fr); }
+            .form-grid { grid-template-columns: 1fr 1fr; }
+            .hero h1 { font-size: 48px; }
+            .container { max-width: 1200px; margin: 0 auto; }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">🚀 RDS | Rajib Digital Solution</div>
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         <div class="nav-links" id="navLinks">
-            <a href="#home" onclick="closeMenu()">🏠 Beranda</a>
-            <a href="#services" onclick="closeMenu()">🚀 Layanan</a>
-            <a href="#pricing" onclick="closeMenu()">💰 Harga</a>
-            <a href="#portfolio" onclick="closeMenu()">🎨 Portofolio</a>
-            <a href="#testimonials" onclick="closeMenu()">⭐ Testimoni</a>
-            <a href="#contact" onclick="closeMenu()">📞 Kontak</a>
-            <a href="admin/login.html" onclick="closeMenu()">🔐 Admin</a>
+            <a onclick="closeMenu(); showSection('home')">🏠 Beranda</a>
+            <a onclick="closeMenu(); showSection('services')">🚀 Layanan</a>
+            <a onclick="closeMenu(); showSection('pricing')">💰 Harga</a>
+            <a onclick="closeMenu(); showSection('portfolio')">🎨 Portofolio</a>
+            <a onclick="closeMenu(); showSection('testimonials')">⭐ Testimoni</a>
+            <a onclick="closeMenu(); showSection('contact')">📞 Kontak</a>
+            <a href="admin/dashboard.html">🔐 Admin</a>
             <a href="https://wa.me/6281316885825" class="btn-wa" onclick="closeMenu()">💬 WhatsApp</a>
         </div>
     </nav>
 
-    <section id="home" class="hero">
-        <h1>Bangun Digital Solution<br>Dengan Teknologi Terkini</h1>
-        <p>Web Development • Mobile App • Cyber Security</p>
-        <div>
-            <a href="#contact" class="btn-primary">📅 Konsultasi Gratis</a>
-            <a href="#services" class="btn-outline">🚀 Lihat Layanan</a>
-        </div>
-        <div class="stats">
-            <div><div class="stat-number">50+</div><div class="stat-label">Proyek Selesai</div></div>
-            <div><div class="stat-number">100%</div><div class="stat-label">Kepuasan Klien</div></div>
-            <div><div class="stat-number">24/7</div><div class="stat-label">Support Teknis</div></div>
-        </div>
-    </section>
-
-    <section id="services" class="container">
-        <h2 class="section-title">Layanan Premium RDS</h2>
-        <p class="section-subtitle">Solusi end-to-end untuk kebutuhan digital Anda</p>
-        <div class="services-grid" id="servicesGrid"></div>
-    </section>
-
-    <section id="pricing" class="container">
-        <h2 class="section-title">Paket Harga</h2>
-        <p class="section-subtitle">Pilih paket yang sesuai dengan kebutuhan bisnis Anda</p>
-        <div class="pricing-grid">
-            <div class="pricing-card"><h3>Basic</h3><div class="pricing-price">Rp 8.000.000</div><p style="font-size:12px;color:#94a3b8">Cocok untuk startup & UMKM</p><ul class="pricing-features"><li>✅ Website Company Profile</li><li>✅ 5 Halaman</li><li>✅ Responsive Design</li><li>✅ SEO Basic</li><li>✅ 1 Tahun Domain</li><li>✅ SSL Certificate</li></ul><a href="#contact" class="btn-card">Pilih Paket</a></div>
-            <div class="pricing-card popular"><div class="popular-badge">⭐ POPULER</div><h3>Professional</h3><div class="pricing-price">Rp 25.000.000</div><p style="font-size:12px;color:#94a3b8">Cocok untuk bisnis berkembang</p><ul class="pricing-features"><li>✅ Website + CMS</li><li>✅ 15 Halaman</li><li>✅ Responsive + Mobile App</li><li>✅ SEO Advanced</li><li>✅ 2 Tahun Domain</li><li>✅ SSL + Security</li><li>✅ Maintenance 3 bulan</li></ul><a href="#contact" class="btn-card">Pilih Paket</a></div>
-            <div class="pricing-card"><h3>Enterprise</h3><div class="pricing-price">Rp 75.000.000+</div><p style="font-size:12px;color:#94a3b8">Cocok untuk perusahaan besar</p><ul class="pricing-features"><li>✅ Custom Web App</li><li>✅ Unlimited Halaman</li><li>✅ Web + Mobile App</li><li>✅ SEO Enterprise</li><li>✅ 3 Tahun Domain</li><li>✅ SSL + Cyber Security</li><li>✅ Maintenance 1 tahun</li><li>✅ Dedicated Support</li></ul><a href="#contact" class="btn-card">Pilih Paket</a></div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="container">
-        <h2 class="section-title">Portofolio Terbaru</h2>
-        <p class="section-subtitle">Beberapa karya unggulan RDS</p>
-        <div class="portfolio-grid" id="portfolioGrid"></div>
-    </section>
-
-    <section id="testimonials" class="container">
-        <h2 class="section-title">Testimoni</h2>
-        <p class="section-subtitle">Apa kata klien kami</p>
-        <div class="testimoni-grid" id="testimoniGrid"></div>
-    </section>
-
-    <section class="container">
-        <h2 class="section-title">FAQ</h2>
-        <p class="section-subtitle">Pertanyaan umum</p>
-        <div class="faq-grid">
-            <div class="faq-item"><div class="faq-question">⏱️ Berapa lama pengerjaan? <span>▼</span></div><div class="faq-answer">Pengerjaan website rata-rata 2-4 minggu tergantung kompleksitas proyek.</div></div>
-            <div class="faq-item"><div class="faq-question">🔒 Apakah data aman? <span>▼</span></div><div class="faq-answer">Data dienkripsi dan dilindungi dengan sistem keamanan berlapis.</div></div>
-            <div class="faq-item"><div class="faq-question">📍 Hanya di Depok? <span>▼</span></div><div class="faq-answer">Kami melayani seluruh Indonesia secara online.</div></div>
-            <div class="faq-item"><div class="faq-question">📄 Ada garansi? <span>▼</span></div><div class="faq-answer">Garansi 3 bulan untuk bug fixing dan perbaikan.</div></div>
-        </div>
-    </section>
-
-    <section id="contact" class="container">
-        <h2 class="section-title">Mulai Proyek</h2>
-        <p class="section-subtitle">Konsultasi gratis</p>
-        <div class="form-grid">
-            <div><div class="contact-info">📞 +62 821-1951-858</div><div class="contact-info">✉️ rajibdigitalsolution@gmail.com</div><div class="contact-info">🕒 24/7 Nonstop</div></div>
-            <div>
-                <form id="consultationForm" name="consultation" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                    <input type="hidden" name="form-name" value="consultation">
-                    <div class="form-group"><input type="text" name="fullName" placeholder="Nama Lengkap" required></div>
-                    <div class="form-group"><input type="email" name="email" placeholder="Email" required></div>
-                    <div class="form-group"><select name="service"><option value="">Pilih Layanan</option><option>Web Development</option><option>Mobile App Development</option><option>Cyber Security</option></select></div>
-                    <div class="form-group"><textarea name="message" rows="4" placeholder="Deskripsi Proyek"></textarea></div>
-                    <button type="submit" class="btn-primary" style="width:100%">📨 Kirim Konsultasi</button>
-                </form>
-                <div id="consultResult" style="margin-top:15px;text-align:center;"></div>
+    <div id="home" class="section">
+        <div class="hero">
+            <h1>Bangun Digital Solution<br>Dengan Teknologi Terkini</h1>
+            <p>Web Development • Mobile App • Cyber Security</p>
+            <button class="btn-primary" onclick="showSection('contact')">📅 Konsultasi Gratis</button>
+            <button class="btn-outline" onclick="showSection('services')">🚀 Lihat Layanan</button>
+            <div class="stats">
+                <div><div class="stat-number">50+</div><div class="stat-label">Proyek Selesai</div></div>
+                <div><div class="stat-number">100%</div><div class="stat-label">Kepuasan Klien</div></div>
+                <div><div class="stat-number">24/7</div><div class="stat-label">Support Teknis</div></div>
             </div>
         </div>
-    </section>
+        <div class="container">
+            <h2 class="section-title">Mengapa Pilih RDS?</h2>
+            <div class="services-grid">
+                <div class="service-card"><div class="service-icon">💻</div><h3>Website Custom</h3><p>Dibangun dari nol, bukan template bajakan</p></div>
+                <div class="service-card"><div class="service-icon">⚡</div><h3>SEO Optimized</h3><p>Mudah ditemukan di Google</p></div>
+                <div class="service-card"><div class="service-icon">🔒</div><h3>Cyber Security</h3><p>Perlindungan dari serangan hacker</p></div>
+                <div class="service-card"><div class="service-icon">📱</div><h3>Responsive</h3><p>Tampil sempurna di HP & Tablet</p></div>
+                <div class="service-card"><div class="service-icon">🚀</div><h3>Fast Loading</h3><p>Kecepatan loading terbaik</p></div>
+                <div class="service-card"><div class="service-icon">💬</div><h3>Support 24/7</h3><p>Bantuan kapan saja Anda butuh</p></div>
+            </div>
+        </div>
+    </div>
 
-    <footer class="footer">
-        <div class="logo" style="margin-bottom:15px;">🚀 RDS | Rajib Digital Solution</div>
-        <p>Software House & Cyber Security Specialist</p>
-        <p>© 2025 RDS - Rajib Digital Solution. All rights reserved.</p>
-    </footer>
+    <div id="services" class="section" style="display:none">
+        <div class="container"><h2 class="section-title">Layanan Premium RDS</h2><p class="section-subtitle">Solusi end-to-end untuk kebutuhan digital Anda</p><div class="services-grid" id="servicesGrid"></div></div>
+    </div>
 
-    <script src="js/script.js"></script>
+    <div id="pricing" class="section" style="display:none">
+        <div class="container"><h2 class="section-title">Paket Harga</h2><p class="section-subtitle">Pilih paket yang sesuai dengan kebutuhan bisnis Anda</p><div class="pricing-grid" id="pricingGrid"></div></div>
+    </div>
+
+    <div id="portfolio" class="section" style="display:none">
+        <div class="container"><h2 class="section-title">Portofolio Terbaru</h2><p class="section-subtitle">Beberapa karya unggulan RDS</p><div class="portfolio-grid" id="portfolioGrid"></div></div>
+    </div>
+
+    <div id="testimonials" class="section" style="display:none">
+        <div class="container"><h2 class="section-title">Testimoni</h2><p class="section-subtitle">Apa kata klien kami</p><div class="testimoni-grid" id="testimoniGrid"></div></div>
+    </div>
+
+    <div id="faq" class="section" style="display:none">
+        <div class="container"><h2 class="section-title">FAQ</h2><p class="section-subtitle">Pertanyaan umum</p><div class="faq-grid" id="faqGrid"></div></div>
+    </div>
+
+    <div id="contact" class="section" style="display:none">
+        <div class="container"><h2 class="section-title">Mulai Proyek</h2><p class="section-subtitle">Konsultasi gratis</p><div class="form-grid"><div><div class="contact-info">📞 +62 821-1951-858</div><div class="contact-info">✉️ rajibdigitalsolution@gmail.com</div><div class="contact-info">🕒 24/7 Nonstop</div></div><div><form id="consultationForm"><div class="form-group"><input type="text" id="fullName" placeholder="Nama Lengkap" required></div><div class="form-group"><input type="email" id="email" placeholder="Email" required></div><div class="form-group"><input type="tel" id="phone" placeholder="No WhatsApp"></div><div class="form-group"><select id="serviceSelect"><option value="">Pilih Layanan</option><option>Web Development</option><option>Mobile App Development</option><option>Cyber Security</option></select></div><div class="form-group"><textarea id="message" rows="4" placeholder="Deskripsi Proyek"></textarea></div><button type="submit" class="btn-primary" style="width:100%">📨 Kirim Konsultasi</button></form><div id="consultResult" style="margin-top:15px;text-align:center;"></div></div></div></div>
+    </div>
+
+    <footer class="footer"><div class="logo" style="margin-bottom:15px;">🚀 RDS | Rajib Digital Solution</div><p>Software House & Cyber Security Specialist</p><p>© 2025 RDS - Rajib Digital Solution. All rights reserved.</p></footer>
+
+    <script>
+        // Supabase Config
+        const SUPABASE_URL = 'https://rxavqieahctcoumxdsuy.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_Om2bBc8abrILDagNByy2ZQ_qhyrVntD';
+
+        // Data Statis
+        const PRODUCTS = {
+            "1": {"icon": "💻", "name": "Web Development", "price": "Rp 8.000.000 - 75.000.000", "desc": "Website profesional, company profile, marketplace, e-commerce, dan CMS modern."},
+            "2": {"icon": "📱", "name": "Mobile App Development", "price": "Rp 15.000.000 - 150.000.000", "desc": "Aplikasi iOS & Android native dan cross-platform dengan UI/UX modern."},
+            "3": {"icon": "🔒", "name": "Cyber Security", "price": "Rp 10.000.000 - 85.000.000", "desc": "Perlindungan aset digital perusahaan dari ancaman siber."}
+        };
+        const PORTFOLIOS = [{"title": "E-Commerce Marketplace", "category": "Website", "client": "PT. Maju Jaya", "desc": "Full Stack Web App dengan payment gateway"},{"title": "Company Profile Digital", "category": "Website", "client": "CV. Kreatif", "desc": "Sistem manajemen proyek rating A+ security"},{"title": "Laundry Mobile App", "category": "Mobile App", "client": "Laundry Cepat", "desc": "Aplikasi pesan antar laundry dengan tracking"}];
+        const TESTIMONIALS = [{"name": "Donwahab Pool", "message": "Kami kasih rating 6/6 untuk layanan RDS. Website yang dibuat simpel, rapi, dan mudah diakses lewat HP.", "rating": 5},{"name": "Enjang Rahman", "message": "Sangat bagus 👍", "rating": 5},{"name": "Mio Soul", "message": "Mantap trimakasi ❤️", "rating": 5}];
+        const PRICING = [{"name": "Basic", "price": "Rp 8.000.000", "desc": "Cocok untuk startup & UMKM", "features": ["✅ Website Company Profile","✅ 5 Halaman","✅ Responsive Design","✅ SEO Basic","✅ 1 Tahun Domain","✅ SSL Certificate"]},{"name": "Professional", "price": "Rp 25.000.000", "desc": "Cocok untuk bisnis berkembang", "popular": true, "features": ["✅ Website + CMS","✅ 15 Halaman","✅ Responsive + Mobile App","✅ SEO Advanced","✅ 2 Tahun Domain","✅ SSL + Security","✅ Maintenance 3 bulan"]},{"name": "Enterprise", "price": "Rp 75.000.000+", "desc": "Cocok untuk perusahaan besar", "features": ["✅ Custom Web App","✅ Unlimited Halaman","✅ Web + Mobile App","✅ SEO Enterprise","✅ 3 Tahun Domain","✅ SSL + Cyber Security","✅ Maintenance 1 tahun","✅ Dedicated Support"]}];
+        const FAQS = [{"q": "⏱️ Berapa lama pengerjaan?", "a": "Pengerjaan website rata-rata 2-4 minggu tergantung kompleksitas proyek."},{"q": "🔒 Apakah data aman?", "a": "Data dienkripsi dan dilindungi dengan sistem keamanan berlapis."},{"q": "📍 Hanya di Depok?", "a": "Kami melayani seluruh Indonesia secara online."},{"q": "📄 Ada garansi?", "a": "Garansi 3 bulan untuk bug fixing dan perbaikan."}];
+
+        function showSection(id) { document.querySelectorAll('.section').forEach(s => s.style.display = 'none'); document.getElementById(id).style.display = 'block'; }
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+        function closeMenu() { document.getElementById('navLinks').classList.remove('open'); }
+
+        function loadServices() { document.getElementById('servicesGrid').innerHTML = Object.values(PRODUCTS).map(p => `<div class="service-card"><div class="service-icon">${p.icon}</div><h3>${p.name}</h3><p>${p.desc}</p><div class="service-price">${p.price}</div><button class="btn-card" onclick="showSection('contact')">Konsultasi</button></div>`).join(''); }
+        function loadPortfolio() { document.getElementById('portfolioGrid').innerHTML = PORTFOLIOS.map(p => `<div class="portfolio-card"><div class="service-icon">🚀</div><h3>${p.title}</h3><p>${p.category} | ${p.client}</p><p style="font-size:12px;color:#94a3b8">${p.desc}</p><a href="#" class="btn-card">Live Demo →</a></div>`).join(''); }
+        function loadTestimonials() { document.getElementById('testimoniGrid').innerHTML = TESTIMONIALS.map(t => `<div class="testimoni-card"><div class="stars">${'★'.repeat(t.rating)}</div><p>"${t.message}"</p><h4>${t.name}</h4><div class="testimoni-reply">💬 RDS: Terima kasih!</div></div>`).join(''); }
+        function loadPricing() { document.getElementById('pricingGrid').innerHTML = PRICING.map(p => `<div class="pricing-card ${p.popular ? 'popular' : ''}">${p.popular ? '<div class="popular-badge">⭐ POPULER</div>' : ''}<h3>${p.name}</h3><div class="pricing-price">${p.price}</div><p style="font-size:12px;color:#94a3b8">${p.desc}</p><ul class="pricing-features">${p.features.map(f => `<li>${f}</li>`).join('')}</ul><button class="btn-card" onclick="showSection('contact')">Pilih Paket</button></div>`).join(''); }
+        function loadFAQ() { document.getElementById('faqGrid').innerHTML = FAQS.map(f => `<div class="faq-item" onclick="this.classList.toggle('active')"><div class="faq-question">${f.q} <span>▼</span></div><div class="faq-answer">${f.a}</div></div>`).join(''); }
+
+        async function submitBooking(data) {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/bookings`, {
+                method: 'POST', headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+                body: JSON.stringify(data)
+            });
+            if (!response.ok) throw new Error('Gagal');
+            return true;
+        }
+
+        document.getElementById('consultationForm')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const resultDiv = document.getElementById('consultResult');
+            resultDiv.innerHTML = '<span style="color:#3b82f6">⏳ Mengirim...</span>';
+            try {
+                await submitBooking({ name: document.getElementById('fullName').value, email: document.getElementById('email').value, phone: document.getElementById('phone').value, service: document.getElementById('serviceSelect').value, message: document.getElementById('message').value, status: 'pending' });
+                resultDiv.innerHTML = '<span style="color:#10b981">✅ Booking terkirim! Admin akan segera menghubungi.</span>';
+                document.getElementById('consultationForm').reset();
+            } catch(error) { resultDiv.innerHTML = '<span style="color:#ef4444">❌ Gagal mengirim. Silakan coba lagi.</span>'; }
+            setTimeout(() => resultDiv.innerHTML = '', 5000);
+        });
+
+        loadServices(); loadPortfolio(); loadTestimonials(); loadPricing(); loadFAQ();
+    </script>
 </body>
 </html>
