@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>RDS - Rajib Digital Solution</title>
+    <meta name="description" content="Rajib Digital Solution - Software House & Cyber Security Specialist. Layanan Web Development, Mobile App, Cyber Security. Konsultasi gratis!">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🚀 RDS | Rajib Digital Solution</div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="#home" onclick="closeMenu()">🏠 Beranda</a>
+            <a href="#services" onclick="closeMenu()">🚀 Layanan</a>
+            <a href="#pricing" onclick="closeMenu()">💰 Harga</a>
+            <a href="#portfolio" onclick="closeMenu()">🎨 Portofolio</a>
+            <a href="#testimonials" onclick="closeMenu()">⭐ Testimoni</a>
+            <a href="#contact" onclick="closeMenu()">📞 Kontak</a>
+            <a href="admin/login.html" onclick="closeMenu()">🔐 Admin</a>
+            <a href="https://wa.me/6281316885825" class="btn-wa" onclick="closeMenu()">💬 WhatsApp</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>Bangun Digital Solution<br>Dengan Teknologi Terkini</h1>
+        <p>Web Development • Mobile App • Cyber Security</p>
+        <div>
+            <a href="#contact" class="btn-primary">📅 Konsultasi Gratis</a>
+            <a href="#services" class="btn-outline">🚀 Lihat Layanan</a>
+        </div>
+        <div class="stats">
+            <div><div class="stat-number">50+</div><div class="stat-label">Proyek Selesai</div></div>
+            <div><div class="stat-number">100%</div><div class="stat-label">Kepuasan Klien</div></div>
+            <div><div class="stat-number">24/7</div><div class="stat-label">Support Teknis</div></div>
+        </div>
+    </section>
+
+    <section id="services" class="container">
+        <h2 class="section-title">Layanan Premium RDS</h2>
+        <p class="section-subtitle">Solusi end-to-end untuk kebutuhan digital Anda</p>
+        <div class="services-grid" id="servicesGrid"></div>
+    </section>
+
+    <section id="pricing" class="container">
+        <h2 class="section-title">Paket Harga</h2>
+        <p class="section-subtitle">Pilih paket yang sesuai dengan kebutuhan bisnis Anda</p>
+        <div class="pricing-grid">
+            <div class="pricing-card"><h3>Basic</h3><div class="pricing-price">Rp 8.000.000</div><p style="font-size:12px;color:#94a3b8">Cocok untuk startup & UMKM</p><ul class="pricing-features"><li>✅ Website Company Profile</li><li>✅ 5 Halaman</li><li>✅ Responsive Design</li><li>✅ SEO Basic</li><li>✅ 1 Tahun Domain</li><li>✅ SSL Certificate</li></ul><a href="#contact" class="btn-card">Pilih Paket</a></div>
+            <div class="pricing-card popular"><div class="popular-badge">⭐ POPULER</div><h3>Professional</h3><div class="pricing-price">Rp 25.000.000</div><p style="font-size:12px;color:#94a3b8">Cocok untuk bisnis berkembang</p><ul class="pricing-features"><li>✅ Website + CMS</li><li>✅ 15 Halaman</li><li>✅ Responsive + Mobile App</li><li>✅ SEO Advanced</li><li>✅ 2 Tahun Domain</li><li>✅ SSL + Security</li><li>✅ Maintenance 3 bulan</li></ul><a href="#contact" class="btn-card">Pilih Paket</a></div>
+            <div class="pricing-card"><h3>Enterprise</h3><div class="pricing-price">Rp 75.000.000+</div><p style="font-size:12px;color:#94a3b8">Cocok untuk perusahaan besar</p><ul class="pricing-features"><li>✅ Custom Web App</li><li>✅ Unlimited Halaman</li><li>✅ Web + Mobile App</li><li>✅ SEO Enterprise</li><li>✅ 3 Tahun Domain</li><li>✅ SSL + Cyber Security</li><li>✅ Maintenance 1 tahun</li><li>✅ Dedicated Support</li></ul><a href="#contact" class="btn-card">Pilih Paket</a></div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="container">
+        <h2 class="section-title">Portofolio Terbaru</h2>
+        <p class="section-subtitle">Beberapa karya unggulan RDS</p>
+        <div class="portfolio-grid" id="portfolioGrid"></div>
+    </section>
+
+    <section id="testimonials" class="container">
+        <h2 class="section-title">Testimoni</h2>
+        <p class="section-subtitle">Apa kata klien kami</p>
+        <div class="testimoni-grid" id="testimoniGrid"></div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">FAQ</h2>
+        <p class="section-subtitle">Pertanyaan umum</p>
+        <div class="faq-grid">
+            <div class="faq-item"><div class="faq-question">⏱️ Berapa lama pengerjaan? <span>▼</span></div><div class="faq-answer">Pengerjaan website rata-rata 2-4 minggu tergantung kompleksitas proyek.</div></div>
+            <div class="faq-item"><div class="faq-question">🔒 Apakah data aman? <span>▼</span></div><div class="faq-answer">Data dienkripsi dan dilindungi dengan sistem keamanan berlapis.</div></div>
+            <div class="faq-item"><div class="faq-question">📍 Hanya di Depok? <span>▼</span></div><div class="faq-answer">Kami melayani seluruh Indonesia secara online.</div></div>
+            <div class="faq-item"><div class="faq-question">📄 Ada garansi? <span>▼</span></div><div class="faq-answer">Garansi 3 bulan untuk bug fixing dan perbaikan.</div></div>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <h2 class="section-title">Mulai Proyek</h2>
+        <p class="section-subtitle">Konsultasi gratis</p>
+        <div class="form-grid">
+            <div><div class="contact-info">📞 +62 821-1951-858</div><div class="contact-info">✉️ rajibdigitalsolution@gmail.com</div><div class="contact-info">🕒 24/7 Nonstop</div></div>
+            <div>
+                <form id="consultationForm" name="consultation" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="consultation">
+                    <div class="form-group"><input type="text" name="fullName" placeholder="Nama Lengkap" required></div>
+                    <div class="form-group"><input type="email" name="email" placeholder="Email" required></div>
+                    <div class="form-group"><select name="service"><option value="">Pilih Layanan</option><option>Web Development</option><option>Mobile App Development</option><option>Cyber Security</option></select></div>
+                    <div class="form-group"><textarea name="message" rows="4" placeholder="Deskripsi Proyek"></textarea></div>
+                    <button type="submit" class="btn-primary" style="width:100%">📨 Kirim Konsultasi</button>
+                </form>
+                <div id="consultResult" style="margin-top:15px;text-align:center;"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="logo" style="margin-bottom:15px;">🚀 RDS | Rajib Digital Solution</div>
+        <p>Software House & Cyber Security Specialist</p>
+        <p>© 2025 RDS - Rajib Digital Solution. All rights reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

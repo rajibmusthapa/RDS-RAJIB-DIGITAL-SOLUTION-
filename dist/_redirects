@@ -1,0 +1,5 @@
+# Redirect untuk SPA
+/* /index.html 200
+
+# API redirect ke backend (jika pakai external)
+/api/* https://rds-backend.onrender.com/api/:splat 200
